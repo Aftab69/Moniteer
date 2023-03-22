@@ -91,8 +91,8 @@ const Profile = () => {
 
   return (
     <>
-    <div className='profileMainContainer'>
-      <div style={visibility}>
+    <div style={visibility} className='profileMainContainer'>
+      <div>
         <h1>Welcome, {name}</h1>
       </div>
       <div className='toggleMainContainer'>
