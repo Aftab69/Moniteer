@@ -1,9 +1,32 @@
 .profileMainContainer{
   padding: 10px;
 }
-.toggleContainer{
-  background-color: grey;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+.toggleMainContainer{
+  display: flex;
+  flex-direction: row;
+}
+.toggleContainer1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  height: 50px;
+  padding-left:10px;
+  padding-right:10px;
+}
+.toggleContainer1:hover{
+  cursor: pointer;
+}
+.toggleContainer2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  height: 50px;
+  margin-left: 10px;
+  padding-left:10px;
+  padding-right:10px;
+}
+.toggleContainer2:hover{
+  cursor: pointer;
 }
