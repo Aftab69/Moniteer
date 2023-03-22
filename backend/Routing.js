@@ -6,8 +6,9 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 router.use(cookieParser());
 
-router.get("/",(req,res)=>{
-    res.send("Hi there")
+router.get("/home",async(req,res)=>{
+    const data = await User.find();
+    res.send(data);
 })
 
 router.get("/profile",async(req,res)=>{
