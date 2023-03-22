@@ -11,6 +11,11 @@ router.get("/home",async(req,res)=>{
     res.send(data);
 })
 
+router.get("/available",async(req,res)=>{
+    const onlinemembers = await User.find({onlinestatus:"on"});
+    res.send(onlinemembers);
+})
+
 router.get("/profile",async(req,res)=>{
     try{
         const verifiedToken = jwt.verify(req.cookies.jwtoken,process.env.PRIVATEKEY);
