@@ -72,4 +72,17 @@ router.post("/login",async(req,res)=>{
     }
 })
 
+router.post("/online", async(req,res)=>{
+    try{
+        const { email, onlinestatus } = req.body;
+        console.log(req.body)
+        const userExist = await User.findOne({email:email});
+        userExist.onlinestatus = onlinestatus;
+        userExist.save();
+        res.status(200).send({"message":"user is online"})
+    } catch(error){
+        console.log(error);
+    }
+})
+
 module.exports = router;

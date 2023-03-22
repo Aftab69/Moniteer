@@ -23,7 +23,10 @@ const userSchema = new Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    onlinestatus:{
+        type: String
+    }
 })
 
 const User = mongoose.model("user",userSchema);

@@ -5,6 +5,7 @@ import "./Profile.css";
 const Profile = () => {
   const navigate = useNavigate();
   const [ name, setName ] = useState("");
+  const [ email, setEmail ] = useState("");
   const [ visibility, setVisibility ] = useState({display:"none"});
   const [ togglebutton1, setTogglebutton1 ] = useState({background:"white"});
   const [ togglebutton2, setTogglebutton2 ] = useState({background:"white"});
@@ -20,6 +21,7 @@ const Profile = () => {
         if(res.status===200){
             const data = await res.json();
             setName(data.name)
+            setEmail(data.email)
             setVisibility({display:"block"})
         } else if(res.status===400) {
             navigate("/login")
@@ -35,10 +37,44 @@ const Profile = () => {
   const handleToggle1 = () =>{
     setTogglebutton1({background:"grey"})
     setTogglebutton2({background:"white"})
+
+    fetch("/online",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body:JSON.stringify({
+        email:email, onlinestatus:"off"
+      })
+    }).then((res)=>{
+      if(res.status===200){
+        alert("User offline")
+      } else {
+        alert("error")
+      }
+    })
+
   }
   const handleToggle2 = () =>{
     setTogglebutton2({background:"green"})
     setTogglebutton1({background:"white"})
+
+    fetch("/online",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body:JSON.stringify({
+        email:email, onlinestatus:"on"
+      })
+    }).then((res)=>{
+      if(res.status===200){
+        alert("User online")
+      } else {
+        alert("error")
+      }
+    })
+
   }
 
   return (
