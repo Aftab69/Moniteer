@@ -1,0 +1,9 @@
+.profileMainContainer{
+  padding: 10px;
+}
+.toggleContainer{
+  background-color: grey;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}

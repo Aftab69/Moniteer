@@ -1,0 +1,73 @@
+*{
+    box-sizing: border-box;
+}
+.registerpageContainer{
+    width: 100%;
+    min-height: 90vh;
+    background-image: url("./Images/registerpageBackground.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.registerinfoContainer{
+    background: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px black;
+    width: 350px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.registerinfoContainer>p{
+    margin: 15px 0;
+    font-weight: 600;
+}
+.registerinfoContainer>input{
+    font-size: 1.1rem;
+    height: 40px;
+    margin: 15px 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.registerinfoContainer>button{
+    background-color: #3498db;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    height: 30px;
+    width: 50%;
+    margin: 25px 0;
+    align-self:center;
+}
+.registerinfoContainer>button:hover{
+    cursor: pointer;
+    background-color: #1d85ca;
+}
+
+@media only screen and (max-width: 350px){
+    .registerinfoContainer{
+        transform: scale(0.75);
+    }
+}
+@media only screen and (min-width:481px) and (max-width:1024px){
+    .registerinfoContainer{
+        transform: scale(0.9);
+    }
+}
+@media only screen and (max-width:480px){
+    .registerinfoContainer{
+        transform: scale(0.8);
+    }
+}
+@media only screen and (min-width:1921px) and (max-width:2880px){
+    .registerinfoContainer{
+        transform: scale(1.5);
+    }
+}
+@media only screen and (min-width:2880px){
+    .registerinfoContainer{
+        transform: scale(2);
+    }
+}

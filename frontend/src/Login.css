@@ -1,0 +1,63 @@
+*{
+    box-sizing: border-box;
+}
+.loginpageContainer{
+    width: 100%;
+    min-height: 90vh;
+    background-image: url("./Images/loginpageBackground.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.logininfoContainer{
+    background: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px black;
+    width: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.logininfoContainer>p{
+    margin: 15px 0;
+    font-weight: 600;
+}
+.logininfoContainer>input{
+    font-size: 1.1rem;
+    height: 40px;
+    margin: 15px 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.logininfoContainer>button{
+    background-color: #3498db;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    height: 30px;
+    width: 50%;
+    margin: 25px 0;
+    align-self:center;
+}
+.logininfoContainer>button:hover{
+    cursor: pointer;
+    background-color: #1d85ca;
+}
+
+@media only screen and (max-width: 300px){
+    .logininfoContainer{
+        width: 200px;
+    }
+}
+@media only screen and (min-width:1921px) and (max-width:2880px){
+    .logininfoContainer{
+        transform: scale(1.5);
+    }
+}
+@media only screen and (min-width:2880px){
+    .logininfoContainer{
+        transform: scale(2);
+    }
+}
