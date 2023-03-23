@@ -9,6 +9,7 @@ const Profile = () => {
   const [ visibility, setVisibility ] = useState({display:"none"});
   const [ togglebutton1, setTogglebutton1 ] = useState({background:"white"});
   const [ togglebutton2, setTogglebutton2 ] = useState({background:"white"});
+
   const getData = async() =>{
       try{
         const res = await fetch("/profile",{
@@ -47,13 +48,31 @@ const Profile = () => {
     setTogglebutton2({background:"white"})
     document.getElementById("toggleContainer2").style.background = "white";
 
-    fetch("/online",{
+    //to get time in seconds after midnight
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var totalSeconds = (hours * 60 * 60) + (minutes * 60) + seconds;
+    var totalSec = totalSeconds.toString();
+
+    //to get today's date
+    var now2 = new Date();
+    var date = now2.getDate();
+    var month = now2.getMonth() + 1;
+    var year = now2.getFullYear();
+    var today = year + "-" + month + "-" + date;
+    
+    fetch("/offline",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
       },
       body:JSON.stringify({
-        email:email, onlinestatus:"off"
+        email:email, 
+        onlinestatus:"off",
+        toggleofftime:totalSec,
+        date:today
       })
     }).then((res)=>{
       if(res.status===200){
@@ -71,13 +90,31 @@ const Profile = () => {
     setTogglebutton1({background:"white"})
     document.getElementById("toggleContainer1").style.background = "white";
 
+    //to get time in seconds after midnight
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var totalSeconds = (hours * 60 * 60) + (minutes * 60) + seconds;
+    var totalSec = totalSeconds.toString();
+
+    //to get today's date
+    var now2 = new Date();
+    var date = now2.getDate();
+    var month = now2.getMonth() + 1;
+    var year = now2.getFullYear();
+    var today = year + "-" + month + "-" + date;
+
     fetch("/online",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
       },
       body:JSON.stringify({
-        email:email, onlinestatus:"on"
+        email:email,
+        onlinestatus:"on",
+        toggleontime:totalSec,
+        date:today
       })
     }).then((res)=>{
       if(res.status===200){

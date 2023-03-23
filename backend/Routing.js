@@ -78,12 +78,53 @@ router.post("/login",async(req,res)=>{
     }
 })
 
-router.post("/online", async(req,res)=>{
+router.post("/offline", async(req,res)=>{
     try{
-        const { email, onlinestatus } = req.body;
-        console.log(req.body)
+        const { email, onlinestatus, toggleofftime, date } = req.body;
+        // console.log(req.body)
         const userExist = await User.findOne({email:email});
         userExist.onlinestatus = onlinestatus;
+
+        // for (let i = 0; i < userExist.timeinfo.length; i++) {
+        //     console.log(userExist.timeinfo[i].date) ;
+        //   }
+
+        // userExist.timeinfo.push({toggleofftime:Number(toggleontime),date:date});
+        userExist.save();
+        res.status(200).send({"message":"user is online"})
+    } catch(error){
+        console.log(error);
+    }
+})
+
+router.post("/online", async(req,res)=>{
+    try{
+        const { email, onlinestatus, toggleontime, date } = req.body;
+        // console.log(req.body)
+        const userExist = await User.findOne({email:email});
+        userExist.onlinestatus = onlinestatus;
+
+        //if online for first time
+        if(userExist.timeinfo.length===0){
+            userExist.timeinfo.push({toggleontime:Number(toggleontime),date:date});
+        } else {
+            //calculating if the date when the button is clicked is already present or not
+            let datenotfound = 0;
+
+            for (let i = 0; i < userExist.timeinfo.length; i++) {
+            //if date already exists
+            if(userExist.timeinfo[i].date===date){
+                userExist.timeinfo[i].toggleontime = Number(toggleontime);
+            } else {
+                datenotfound++;
+            }
+          }
+            //if no particular date is found in data
+          if(datenotfound===userExist.timeinfo.length){
+            userExist.timeinfo.push({toggleontime:Number(toggleontime),date:date});
+          }
+        }
+ 
         userExist.save();
         res.status(200).send({"message":"user is online"})
     } catch(error){

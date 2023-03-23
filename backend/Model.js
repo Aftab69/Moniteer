@@ -26,7 +26,21 @@ const userSchema = new Schema({
     }],
     onlinestatus:{
         type: String
-    }
+    },
+    timeinfo:[{
+        toggleontime:{
+            type: Number
+        },
+        toggleofftime:{
+            type: Number
+        },
+        totaltime:{
+            type: Number
+        },
+        date:{
+            type: String
+        }
+    }]
 })
 
 const User = mongoose.model("user",userSchema);
