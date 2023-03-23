@@ -85,9 +85,21 @@ router.post("/offline", async(req,res)=>{
         const userExist = await User.findOne({email:email});
         userExist.onlinestatus = onlinestatus;
 
-        // for (let i = 0; i < userExist.timeinfo.length; i++) {
-        //     console.log(userExist.timeinfo[i].date) ;
-        //   }
+        for (let i = 0; i < userExist.timeinfo.length; i++) {
+            if(userExist.timeinfo[i].date===date && userExist.timeinfo[i].toggleontime!==0){
+                userExist.timeinfo[i].toggleofftime = toggleofftime
+                if(userExist.timeinfo[i].totaltime >=0){
+                    userExist.timeinfo[i].totaltime = Number(userExist.timeinfo[i].totaltime) + Number(toggleofftime) - Number(userExist.timeinfo[i].toggleontime)
+                } else {
+                    userExist.timeinfo[i].totaltime = 0 + Number(toggleofftime) - Number(userExist.timeinfo[i].toggleontime)
+                }
+                
+                userExist.timeinfo[i].toggleofftime = 0;
+                userExist.timeinfo[i].toggleontime = 0;
+            } else {
+               
+            }
+          }
 
         // userExist.timeinfo.push({toggleofftime:Number(toggleontime),date:date});
         userExist.save();
@@ -114,7 +126,12 @@ router.post("/online", async(req,res)=>{
             for (let i = 0; i < userExist.timeinfo.length; i++) {
             //if date already exists
             if(userExist.timeinfo[i].date===date){
-                userExist.timeinfo[i].toggleontime = Number(toggleontime);
+                
+                if(userExist.timeinfo[i].toggleontime>0){
+                } else {
+                    userExist.timeinfo[i].toggleontime = Number(toggleontime);
+                }
+                
             } else {
                 datenotfound++;
             }
