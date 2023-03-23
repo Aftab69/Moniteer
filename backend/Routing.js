@@ -85,6 +85,9 @@ router.post("/offline", async(req,res)=>{
         const userExist = await User.findOne({email:email});
         userExist.onlinestatus = onlinestatus;
 
+        //calculating if the date when the button is clicked is already present or not
+        let datenotfound = 0;
+
         for (let i = 0; i < userExist.timeinfo.length; i++) {
             if(userExist.timeinfo[i].date===date && userExist.timeinfo[i].toggleontime!==0){
                 userExist.timeinfo[i].toggleofftime = toggleofftime
@@ -96,9 +99,23 @@ router.post("/offline", async(req,res)=>{
                 
                 userExist.timeinfo[i].toggleofftime = 0;
                 userExist.timeinfo[i].toggleontime = 0;
-            } else {
-               
+            } else if(userExist.timeinfo[i].date!==date){
+               datenotfound++;
             }
+          }
+
+          //if the date of toggling off is on the next date
+          if(datenotfound===userExist.timeinfo.length){
+            //adding time for previous day
+            if(userExist.timeinfo[userExist.timeinfo.length-1].totaltime >=0){
+                userExist.timeinfo[userExist.timeinfo.length-1].totaltime = Number(userExist.timeinfo[userExist.timeinfo.length-1].totaltime) + 86400 - Number(userExist.timeinfo[userExist.timeinfo.length-1].toggleontime)
+            } else {
+                userExist.timeinfo[userExist.timeinfo.length-1].totaltime = 0 + 86400 - Number(userExist.timeinfo[userExist.timeinfo.length-1].toggleontime)
+            }
+            userExist.timeinfo[userExist.timeinfo.length-1].toggleontime = 0;
+            //adding time for current day
+            userExist.timeinfo.push({toggleontime:0,toggleofftime:0,date:date,totaltime:toggleofftime});
+
           }
 
         // userExist.timeinfo.push({toggleofftime:Number(toggleontime),date:date});
