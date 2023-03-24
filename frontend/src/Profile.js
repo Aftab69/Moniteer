@@ -6,6 +6,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [ name, setName ] = useState("");
   const [ email, setEmail ] = useState("");
+  const [ timebundle, setTimebundle ] = useState([]);
   const [ visibility, setVisibility ] = useState({display:"none"});
   const [ togglebutton1, setTogglebutton1 ] = useState({background:"white"});
   const [ togglebutton2, setTogglebutton2 ] = useState({background:"white"});
@@ -23,6 +24,7 @@ const Profile = () => {
             const data = await res.json();
             setName(data.name)
             setEmail(data.email)
+            setTimebundle(data.timeinfo)
             if(data.onlinestatus==="on"){
               document.getElementById("toggleContainer2").style.background = "green";
               document.getElementById("toggleContainer1").style.background = "white";
@@ -43,7 +45,7 @@ const Profile = () => {
   },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleToggle1 = (e) =>{
-    e.preventDefault();
+    e.preventDefault()
     setTogglebutton1({background:"grey"})
     setTogglebutton2({background:"white"})
     document.getElementById("toggleContainer2").style.background = "white";
@@ -82,6 +84,12 @@ const Profile = () => {
       }
     })
 
+    const refreshPage = () =>{
+      window.location.reload(true)
+    }
+    setTimeout(() => {
+      refreshPage();
+    }, 1000);
   }
   
   const handleToggle2 = (e) =>{
@@ -126,6 +134,16 @@ const Profile = () => {
 
   }
 
+  console.log(timebundle)
+  //convert total seconds to hours, minutes and seconds
+      const getTime = (totaltimesecs)=>{
+        const hours = Math.floor(totaltimesecs / 3600);
+        const minutes = Math.floor((totaltimesecs - hours * 3600) / 60);
+        const remainingSeconds = totaltimesecs - hours * 3600 - minutes * 60;
+        const result = hours + " hrs " + minutes + " mins " + remainingSeconds + " s";
+        return result;
+      }
+
   return (
     <>
     <div style={visibility} className='profileMainContainer'>
@@ -139,6 +157,21 @@ const Profile = () => {
         <div onClick={handleToggle2} className='toggleContainer2' id='toggleContainer2' style={togglebutton2}>
           <p>I'm Online</p>
         </div>
+      </div>
+      <div>
+        <h1>Timeline</h1>
+        <div className='headingBox'>
+          <p style={{textDecoration:"underline"}}>Date</p>
+          <p style={{textDecoration:"underline"}}>Time</p>
+        </div>
+        {timebundle.map((eachdaydata)=>(
+          <>
+            <div className='eachdayBox'>
+              <div className='dateBox'>{eachdaydata.date}</div>
+              <div className='timeBox'>{getTime(eachdaydata.totaltime)}</div>
+            </div>
+          </>
+        ))}
       </div>
     </div>
     </>

@@ -30,3 +30,18 @@
 .toggleContainer2:hover{
   cursor: pointer;
 }
+
+.headingBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+}
+.eachdayBox{
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+  padding: 10px;
+}
