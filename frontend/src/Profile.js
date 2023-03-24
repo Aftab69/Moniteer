@@ -159,7 +159,7 @@ const Profile = () => {
         </div>
       </div>
       <div>
-        <h1>Timeline</h1>
+        <h1>Your Timeline</h1>
         <div className='headingBox'>
           <p style={{textDecoration:"underline"}}>Date</p>
           <p style={{textDecoration:"underline"}}>Time</p>

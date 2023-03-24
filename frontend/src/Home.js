@@ -5,6 +5,7 @@ const Home = () => {
   const [ fulldata, setFulldata ] = useState([]);
   const [ availablemembers, setAvailablemembers ] = useState([]);
   const [ membertimearr, setMembertimearr ] = useState([]);
+  const [ timelinevisibility, setTimelinevisibility ] = useState({visibility:"hidden"});
   const getData = async() =>{
     try{
       const res = await fetch("/home",{
@@ -55,6 +56,7 @@ const Home = () => {
       }
       i++;
     }
+    setTimelinevisibility({visibility:"visible"})
   }
   //convert total seconds to hours, minutes and seconds
   const getTime = (totaltimesecs)=>{
@@ -68,29 +70,43 @@ const Home = () => {
   console.log(membertimearr)
   return (
     <>
-      <div>All Members :</div>
-      {fulldata.map((eachIndividual)=>(
-        <>
-        <div>{eachIndividual.name}</div>
-        <button onClick={handleTimeline} name={eachIndividual.email}>View</button>
-        </>
-      ))}
-      <div>Online Members:</div>
-      {availablemembers.map((eachIndividual)=>(
-        <>
-        <div>{eachIndividual.name}</div>
-        <button onClick={handleTimeline} name={eachIndividual.email}>View</button>
-        </>
-      ))}
-
-      {membertimearr.map((eachDay)=>(
-        <>
-        <div className='eachdayBox'>
-          <div className='dateBox'>{eachDay.date}</div>
-          <div className='timeBox'>{getTime(eachDay.totaltime)}</div>
+    <div className='homepageMaincontainer'>
+      <div className='membersMaincontainer'>
+        <h3>All Members :</h3>
+        {fulldata.map((eachIndividual)=>(
+          <>
+          <div className='membersContainer'>
+            <div style={{marginRight:"5px"}}>{eachIndividual.name}</div>
+            <button onClick={handleTimeline} name={eachIndividual.email}>&rarr;</button>
+          </div>
+          </>
+        ))}
+        <h3>Online Members:</h3>
+        {availablemembers.map((eachIndividual)=>(
+          <>
+          <div className='membersContainer'>
+            <div style={{marginRight:"10px"}}>{eachIndividual.name}</div>
+            <button onClick={handleTimeline} name={eachIndividual.email}>&rarr;</button>
+          </div>
+          </>
+        ))}
+      </div>
+      <div style={timelinevisibility} className='timelineMaincontainer'>
+        <h3>Timeline:</h3>
+        <div className='headingBoxhome'>
+          <p style={{textDecoration:"underline"}}>Date</p>
+          <p style={{textDecoration:"underline"}}>Time</p>
         </div>
-      </>
-      ))}
+        {membertimearr.map((eachDay)=>(
+          <>
+          <div className='eachdayBoxhome'>
+            <div>{eachDay.date}</div>
+            <div>{getTime(eachDay.totaltime)}</div>
+          </div>
+        </>
+        ))}
+      </div>
+    </div>
     </>   
   )
 }

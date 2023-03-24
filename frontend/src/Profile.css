@@ -1,9 +1,12 @@
 .profileMainContainer{
-  padding: 10px;
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 50px;
+  display: flex;
 }
 .toggleMainContainer{
   display: flex;
   flex-direction: row;
+  margin-bottom: 50px;
 }
 .toggleContainer1{
   display: flex;

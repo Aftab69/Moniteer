@@ -1,0 +1,44 @@
+.homepageMaincontainer{
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.membersMaincontainer{
+    padding: 10px;
+    background-color: rgb(216, 216, 224);
+    margin-right: 20px;
+}
+.membersContainer{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.membersContainer>button{
+    background:  #e4e4e4;
+    border: 1px solid black;
+}
+.membersContainer>button:hover{
+    background:  #c5c5c5;
+    cursor: pointer;
+}
+.timelineMaincontainer{
+    padding: 10px;
+    background-color: rgb(214, 230, 214);
+}
+.headingBoxhome{
+    display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+}
+.eachdayBoxhome{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+    padding: 10px;
+  }
