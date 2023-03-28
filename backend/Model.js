@@ -39,7 +39,15 @@ const userSchema = new Schema({
         },
         date:{
             type: String
-        }
+        },
+        activity:[{
+            statuscheck:{
+                type:String
+            },
+            statustime:{
+                type: Number
+            }
+        }]
     }]
 })
 

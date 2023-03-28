@@ -91,6 +91,7 @@ router.post("/offline", async(req,res)=>{
         for (let i = 0; i < userExist.timeinfo.length; i++) {
             if(userExist.timeinfo[i].date===date && userExist.timeinfo[i].toggleontime!==0){
                 userExist.timeinfo[i].toggleofftime = toggleofftime
+                userExist.timeinfo[i].activity.push({statuscheck:"offline",statustime:toggleofftime})
                 if(userExist.timeinfo[i].totaltime >=0){
                     userExist.timeinfo[i].totaltime = Number(userExist.timeinfo[i].totaltime) + Number(toggleofftime) - Number(userExist.timeinfo[i].toggleontime)
                 } else {
@@ -114,7 +115,7 @@ router.post("/offline", async(req,res)=>{
             }
             userExist.timeinfo[userExist.timeinfo.length-1].toggleontime = 0;
             //adding time for current day
-            userExist.timeinfo.push({toggleontime:0,toggleofftime:0,date:date,totaltime:toggleofftime});
+            userExist.timeinfo.push({toggleontime:0,toggleofftime:0,date:date,totaltime:toggleofftime,activity:[{statuscheck:"offline",statustime:toggleofftime}]});
 
           }
 
@@ -135,7 +136,7 @@ router.post("/online", async(req,res)=>{
 
         //if online for first time
         if(userExist.timeinfo.length===0){
-            userExist.timeinfo.push({toggleontime:Number(toggleontime),date:date});
+            userExist.timeinfo.push({toggleontime:Number(toggleontime),date:date,activity:[{statuscheck:"online",statustime:toggleontime}]});
         } else {
             //calculating if the date when the button is clicked is already present or not
             let datenotfound = 0;
@@ -147,6 +148,7 @@ router.post("/online", async(req,res)=>{
                 if(userExist.timeinfo[i].toggleontime>0){
                 } else {
                     userExist.timeinfo[i].toggleontime = Number(toggleontime);
+                    userExist.timeinfo[i].activity.push({statuscheck:"online",statustime:toggleontime})
                 }
                 
             } else {
@@ -155,7 +157,7 @@ router.post("/online", async(req,res)=>{
           }
             //if no particular date is found in data
           if(datenotfound===userExist.timeinfo.length){
-            userExist.timeinfo.push({toggleontime:Number(toggleontime),date:date});
+            userExist.timeinfo.push({toggleontime:Number(toggleontime),date:date,activity:[{statuscheck:"online",statustime:toggleontime}]});
           }
         }
  

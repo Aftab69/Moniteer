@@ -34,17 +34,46 @@
   cursor: pointer;
 }
 
+.timelineandactivityBox{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.timelineBox{
+  width: 320px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+}
 .headingBox{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 300px;
 }
+.timelinemapBox{
+  width: 320px;
+  max-height: 300px;
+  overflow: auto;
+}
 .eachdayBox{
   border: 1px solid black;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: 300px;
   padding: 10px;
+}
+.eachdayBox>button:hover{
+  cursor: pointer;
+}
+.activityBox{
+  width: 320px;
+}
+.activitymapBox{
+  width: 320px;
+  max-height: 300px;
+  overflow: auto;
 }

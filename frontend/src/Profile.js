@@ -10,6 +10,7 @@ const Profile = () => {
   const [ visibility, setVisibility ] = useState({display:"none"});
   const [ togglebutton1, setTogglebutton1 ] = useState({background:"white"});
   const [ togglebutton2, setTogglebutton2 ] = useState({background:"white"});
+  const [ activityarr, setActivityarr ] = useState([]);
 
   const getData = async() =>{
       try{
@@ -132,6 +133,12 @@ const Profile = () => {
       }
     })
 
+    const refreshPage = () =>{
+      window.location.reload(true)
+    }
+    setTimeout(() => {
+      refreshPage();
+    }, 1000);
   }
 
   console.log(timebundle)
@@ -143,6 +150,21 @@ const Profile = () => {
         const result = hours + " hrs " + minutes + " mins " + remainingSeconds + " s";
         return result;
       }
+
+  //handling activity on clicking date
+  const handleActivity = (e)=>{
+    e.preventDefault();
+    console.log(timebundle);
+    
+    let i=0;
+    while(i<timebundle.length){
+      if(timebundle[i].date===e.target.name){
+        setActivityarr(timebundle[i].activity)
+        break;
+      }
+      i++;
+    }
+  }
 
   return (
     <>
@@ -158,20 +180,42 @@ const Profile = () => {
           <p>I'm Online</p>
         </div>
       </div>
-      <div>
-        <h1>Your Timeline</h1>
-        <div className='headingBox'>
-          <p style={{textDecoration:"underline"}}>Date</p>
-          <p style={{textDecoration:"underline"}}>Time</p>
+      <div className='timelineandactivityBox'>
+        <div className='timelineBox'>
+          <h1>Your Timeline</h1>
+          <div className='headingBox'>
+            <p style={{textDecoration:"underline"}}>Date</p>
+            <p style={{textDecoration:"underline",display:"none"}}>Time</p>
+          </div>
+          <div className='timelinemapBox'>
+          {timebundle.map((eachdaydata)=>(
+            <>
+              <div className='eachdayBox'>
+                <div className='dateBox'>{eachdaydata.date}</div>
+                <button onClick={handleActivity} name={eachdaydata.date}>&rarr;</button>
+                <div className='timeBox' style={{display:"none"}}>{getTime(eachdaydata.totaltime)}</div>
+              </div>
+            </>
+          ))}
+          </div>
         </div>
-        {timebundle.map((eachdaydata)=>(
-          <>
-            <div className='eachdayBox'>
-              <div className='dateBox'>{eachdaydata.date}</div>
-              <div className='timeBox'>{getTime(eachdaydata.totaltime)}</div>
-            </div>
-          </>
-        ))}
+        <div className='activityBox'>
+          <h1>Your Activities</h1>
+          <div className='headingBox'>
+            <p style={{textDecoration:"underline"}}>Status</p>
+            <p style={{textDecoration:"underline"}}>Time</p>
+          </div>
+          <div className='activitymapBox'>
+          {activityarr.map((eachdaydata)=>(
+            <>
+              <div className='eachdayBox'>
+                <div className='dateBox'>{eachdaydata.statuscheck}</div>
+                <div className='timeBox'>{getTime(eachdaydata.statustime)}</div>
+              </div>
+            </>
+          ))}
+          </div>
+        </div>
       </div>
     </div>
     </>
