@@ -60,11 +60,16 @@ const Home = () => {
   }
   //convert total seconds to hours, minutes and seconds
   const getTime = (totaltimesecs)=>{
-    const hours = Math.floor(totaltimesecs / 3600);
-    const minutes = Math.floor((totaltimesecs - hours * 3600) / 60);
-    const remainingSeconds = totaltimesecs - hours * 3600 - minutes * 60;
-    const result = hours + " hrs " + minutes + " mins " + remainingSeconds + " s";
-    return result;
+    if(totaltimesecs>=0){
+      const hours = Math.floor(totaltimesecs / 3600);
+      const minutes = Math.floor((totaltimesecs - hours * 3600) / 60);
+      const remainingSeconds = totaltimesecs - hours * 3600 - minutes * 60;
+      const result = hours + " hrs " + minutes + " mins " + remainingSeconds + " s";
+      return result;
+    } else {
+      return "0 hrs 0 mins 0 s";
+    }
+    
   }
   
   console.log(membertimearr)
