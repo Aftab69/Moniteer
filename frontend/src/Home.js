@@ -3,7 +3,7 @@ import "./Home.css";
 
 const Home = () => {
   const [ fulldata, setFulldata ] = useState([]);
-  const [ availablemembers, setAvailablemembers ] = useState([]);
+  // const [ availablemembers, setAvailablemembers ] = useState([]);
   const [ membertimearr, setMembertimearr ] = useState([]);
   const [ timelinevisibility, setTimelinevisibility ] = useState({visibility:"hidden"});
   const [ activitiesvisibility, setActivitiesvisibility ] = useState({visibility:"hidden"});
@@ -25,22 +25,22 @@ const Home = () => {
           console.log(error);
     }
   }
-  const getAvailable = async()=>{
-    const res = await fetch("/available",{
-      method:"GET",
-      headers:{
-        "Content-Type":"application/json"
-      }
-    })
-    if(res.status===200){
-    const data = await res.json();
-    setAvailablemembers(data);  
-    console.log(data);
-    } 
-  }
+  // const getAvailable = async()=>{
+  //   const res = await fetch("/available",{
+  //     method:"GET",
+  //     headers:{
+  //       "Content-Type":"application/json"
+  //     }
+  //   })
+  //   if(res.status===200){
+  //   const data = await res.json();
+  //   setAvailablemembers(data);  
+  //   console.log(data);
+  //   } 
+  // }
   useEffect(()=>{
     getData()
-    getAvailable()
+    // getAvailable()
   },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
   //get member timeline
@@ -96,15 +96,27 @@ const Home = () => {
     <div className='homepageMaincontainer'>
       <div className='membersMaincontainer'>
         <h3>All Members :</h3>
-        {fulldata.map((eachIndividual)=>(
-          <>
-          <div className='membersContainer'>
-            <div style={{marginRight:"5px"}}>{eachIndividual.name}</div>
-            <button onClick={handleTimeline} name={eachIndividual.email}>&rarr;</button>
-          </div>
-          </>
-        ))}
-        <h3>Online Members:</h3>
+        <div className='membersmapboxHome'>
+          {fulldata.map((eachIndividual)=>(
+            <>
+            <div className='eachdayBoxhome'>
+              <div className="membernameBox">
+                {eachIndividual.name}
+                {(eachIndividual.onlinestatus==="off") ? 
+                  <>
+                  <div style={{background:"red"}} className='statusboxCircle' id={eachIndividual.email}></div>
+                  </> : 
+                  <>
+                  <div style={{background:"green"}} className='statusboxCircle' id={eachIndividual.email}></div>
+                  </>         
+                }
+             </div>
+              <button onClick={handleTimeline} name={eachIndividual.email}>&rarr;</button>
+            </div>
+            </>
+          ))}
+        </div>
+        {/* <h3>Online Members:</h3>
         {availablemembers.map((eachIndividual)=>(
           <>
           <div className='membersContainer'>
@@ -112,7 +124,7 @@ const Home = () => {
             <button onClick={handleTimeline} name={eachIndividual.email}>&rarr;</button>
           </div>
           </>
-        ))}
+        ))} */}
       </div>
       <div style={timelinevisibility} className='timelineMaincontainer'>
         <h3>Timeline:</h3>
