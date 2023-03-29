@@ -101,13 +101,15 @@ const Home = () => {
             <>
             <div className='eachdayBoxhome'>
               <div className="membernameBox">
-                {eachIndividual.name}
+                <div className='memberName'>{eachIndividual.name}</div>
                 {(eachIndividual.onlinestatus==="off") ? 
                   <>
                   <div style={{background:"red"}} className='statusboxCircle' id={eachIndividual.email}></div>
+                  <div className='statusText'>offline</div>
                   </> : 
                   <>
                   <div style={{background:"green"}} className='statusboxCircle' id={eachIndividual.email}></div>
+                  <div className='statusText'>online</div>
                   </>         
                 }
              </div>
