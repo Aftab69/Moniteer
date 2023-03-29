@@ -11,6 +11,7 @@ const Profile = () => {
   const [ togglebutton1, setTogglebutton1 ] = useState({background:"white"});
   const [ togglebutton2, setTogglebutton2 ] = useState({background:"white"});
   const [ activityarr, setActivityarr ] = useState([]);
+  const [ activityboxvisibility, setActivityboxvisibility ] = useState({visibility:"hidden"})
 
   const getData = async() =>{
       try{
@@ -164,6 +165,7 @@ const Profile = () => {
       }
       i++;
     }
+    setActivityboxvisibility({visibility:"visible"})
   }
 
   return (
@@ -199,7 +201,7 @@ const Profile = () => {
           ))}
           </div>
         </div>
-        <div className='activityBox'>
+        <div style={activityboxvisibility} className='activityBox'>
           <h1>Your Activities</h1>
           <div className='headingBox'>
             <p style={{textDecoration:"underline"}}>Status</p>
