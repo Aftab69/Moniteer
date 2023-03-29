@@ -4,11 +4,14 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .membersMaincontainer{
+    width: 335px;
     padding: 10px;
     background-color: rgb(216, 216, 224);
     margin-right: 20px;
+    margin-top: 20px;
 }
 .membersContainer{
     padding: 10px;
@@ -25,20 +28,63 @@
     cursor: pointer;
 }
 .timelineMaincontainer{
+    width: 335px;
     padding: 10px;
     background-color: rgb(214, 230, 214);
+    margin-right: 20px;
+    margin-top: 20px;
 }
 .headingBoxhome{
     display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 300px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+}
+.timelinemapboxHome{
+    width: 320px;
+    max-height: 300px;
+    overflow: auto;
 }
 .eachdayBoxhome{
     border: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 300px;
     padding: 10px;
+}
+.eachdayBoxhome>button{
+    cursor: pointer;
+}
+
+.activityboxHome{
+    background-color: rgb(191, 240, 240);
+    width: 335px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+.headingboxHome2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+  }
+  .activitymapboxHome{
+    width: 320px;
+    max-height: 300px;
+    overflow: auto;
+  }
+  .eachdayboxHome2{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    padding: 10px;
+  }
+  .eachdayboxHome2>button:hover{
+    cursor: pointer;
   }

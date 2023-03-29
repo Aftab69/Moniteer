@@ -6,6 +6,8 @@ const Home = () => {
   const [ availablemembers, setAvailablemembers ] = useState([]);
   const [ membertimearr, setMembertimearr ] = useState([]);
   const [ timelinevisibility, setTimelinevisibility ] = useState({visibility:"hidden"});
+  const [ activitiesvisibility, setActivitiesvisibility ] = useState({visibility:"hidden"});
+  const [ activityarr, setActivityarr ] = useState([]);
   const getData = async() =>{
     try{
       const res = await fetch("/home",{
@@ -72,7 +74,23 @@ const Home = () => {
     
   }
   
+  //handling activity on clicking date
+  const handleActivity = (e)=>{
+    e.preventDefault();
+    
+    let i=0;
+    while(i<membertimearr.length){
+      if(membertimearr[i].date===e.target.name){
+        setActivityarr(membertimearr[i].activity)
+        break;
+      }
+      i++;
+    }
+    setActivitiesvisibility({visibility:"visible"})
+  }
+
   console.log(membertimearr)
+  console.log(activityarr)
   return (
     <>
     <div className='homepageMaincontainer'>
@@ -102,15 +120,37 @@ const Home = () => {
           <p style={{textDecoration:"underline"}}>Date</p>
           <p style={{textDecoration:"underline"}}>Time</p>
         </div>
+        <div className='timelinemapboxHome'>
         {membertimearr.map((eachDay)=>(
           <>
           <div className='eachdayBoxhome'>
             <div>{eachDay.date}</div>
+            <button onClick={handleActivity} name={eachDay.date}>&rarr;</button>
             <div>{getTime(eachDay.totaltime)}</div>
           </div>
         </>
         ))}
+        </div> 
       </div>
+
+      <div style={activitiesvisibility} className='activityboxHome'>
+          <h3>Activities:</h3>
+          <div className='headingboxHome2'>
+            <p style={{textDecoration:"underline"}}>Status</p>
+            <p style={{textDecoration:"underline"}}>Time</p>
+          </div>
+          <div className='activitymapboxHome'>
+          {activityarr.map((eachdaydata)=>(
+            <>
+              <div className='eachdayboxHome2'>
+                <div className='dateBox'>{eachdaydata.statuscheck}</div>
+                <div className='timeBox'>{getTime(eachdaydata.statustime)}</div>
+              </div>
+            </>
+          ))}
+          </div>
+        </div>
+
     </div>
     </>   
   )
