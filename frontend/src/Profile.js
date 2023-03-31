@@ -26,13 +26,18 @@ const Profile = () => {
             const data = await res.json();
             setName(data.name)
             setEmail(data.email)
-            setTimebundle(data.timeinfo)
+            setTimebundle(data.timeinfo.reverse())
             if(data.onlinestatus==="on"){
-              document.getElementById("toggleContainer2").style.background = "green";
-              document.getElementById("toggleContainer1").style.background = "white";
+              // document.getElementById("toggleContainer2").style.background = "green";
+              // document.getElementById("toggleContainer1").style.background = "white";
+              setTogglebutton2({background:"green"})
+              setTogglebutton1({background:"white"})
+
             } else if(data.onlinestatus==="off"){
-              document.getElementById("toggleContainer1").style.background = "grey";
-              document.getElementById("toggleContainer2").style.background = "white";
+              // document.getElementById("toggleContainer1").style.background = "grey";
+              // document.getElementById("toggleContainer2").style.background = "white";
+              setTogglebutton2({background:"white"})
+              setTogglebutton1({background:"grey"})
             }
             setVisibility({display:"block"})
         } else if(res.status===400) {
@@ -50,7 +55,7 @@ const Profile = () => {
     e.preventDefault()
     setTogglebutton1({background:"grey"})
     setTogglebutton2({background:"white"})
-    document.getElementById("toggleContainer2").style.background = "white";
+    // document.getElementById("toggleContainer2").style.background = "white";
 
     //to get time in seconds after midnight
     var now = new Date();
@@ -98,7 +103,7 @@ const Profile = () => {
     e.preventDefault();
     setTogglebutton2({background:"green"})
     setTogglebutton1({background:"white"})
-    document.getElementById("toggleContainer1").style.background = "white";
+    // document.getElementById("toggleContainer1").style.background = "white";
 
     //to get time in seconds after midnight
     var now = new Date();
@@ -160,7 +165,7 @@ const Profile = () => {
     let i=0;
     while(i<timebundle.length){
       if(timebundle[i].date===e.target.name){
-        setActivityarr(timebundle[i].activity)
+        setActivityarr(timebundle[i].activity.reverse())
         break;
       }
       i++;
