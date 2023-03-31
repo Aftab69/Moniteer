@@ -81,7 +81,7 @@ const Home = () => {
     let i=0;
     while(i<membertimearr.length){
       if(membertimearr[i].date===e.target.name){
-        setActivityarr(membertimearr[i].activity)
+        setActivityarr(membertimearr[i].activity);
         break;
       }
       i++;
@@ -143,7 +143,7 @@ const Home = () => {
             <div>{getTime(eachDay.totaltime)}</div>
           </div>
         </>
-        ))}
+        )).reverse()}
         </div> 
       </div>
 
@@ -161,7 +161,7 @@ const Home = () => {
                 <div className='timeBox'>{getTime(eachdaydata.statustime)}</div>
               </div>
             </>
-          ))}
+          )).reverse()}
           </div>
         </div>
 

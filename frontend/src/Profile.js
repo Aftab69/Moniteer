@@ -165,7 +165,7 @@ const Profile = () => {
     let i=0;
     while(i<timebundle.length){
       if(timebundle[i].date===e.target.name){
-        setActivityarr(timebundle[i].activity.reverse())
+        setActivityarr(timebundle[i].activity)
         break;
       }
       i++;
@@ -220,7 +220,7 @@ const Profile = () => {
                 <div className='timeBox'>{getTime(eachdaydata.statustime)}</div>
               </div>
             </>
-          ))}
+          )).reverse()}
           </div>
         </div>
       </div>
