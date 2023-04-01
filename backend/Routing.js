@@ -11,6 +11,20 @@ router.get("/home",async(req,res)=>{
     res.send(data);
 })
 
+router.get("/authenticate",async(req,res)=>{
+    try{
+        const verifiedToken = jwt.verify(req.cookies.jwtoken,process.env.PRIVATEKEY);
+        const userData = await User.findOne({_id:verifiedToken._id,role:"admin"})
+        if(userData){
+            res.status(200).send(userData);
+        } else {
+            res.status(400).json({"message":"User unauthorised"})
+        }
+    } catch(error){
+            res.status(400).json({"message":"User unauthorised"})
+    }
+})
+
 router.get("/available",async(req,res)=>{
     const onlinemembers = await User.find({onlinestatus:"on"});
     res.send(onlinemembers);

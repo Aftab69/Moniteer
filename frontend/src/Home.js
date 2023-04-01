@@ -1,13 +1,47 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Home.css";
 
+
 const Home = () => {
+  const navigate = useNavigate();
   const [ fulldata, setFulldata ] = useState([]);
   // const [ availablemembers, setAvailablemembers ] = useState([]);
   const [ membertimearr, setMembertimearr ] = useState([]);
   const [ timelinevisibility, setTimelinevisibility ] = useState({visibility:"hidden"});
   const [ activitiesvisibility, setActivitiesvisibility ] = useState({visibility:"hidden"});
   const [ activityarr, setActivityarr ] = useState([]);
+
+  // const authenticate = () =>{
+  //   fetch("/authenticate",{
+  //     method:"GET",
+  //     headers:{
+  //       "Content-Type":"application/json"
+  //     }
+  //   }).then((res)=>res.json()).then((data)=>{
+  //     console.log("hi");
+  //     console.log(data);
+  //   })
+  // } 
+
+  const authenticate = async() =>{
+    try{
+      const res = await fetch("/authenticate",{
+                  method:"GET",
+                  headers:{
+                    "Content-Type":"application/json"
+                  }
+                })
+      if(res.status===200){
+          const data = await res.json(); 
+      } else if(res.status===400){
+          navigate("/")
+      }
+    } catch(error){
+          console.log(error);
+    }
+  }
+
   const getData = async() =>{
     try{
       const res = await fetch("/home",{
@@ -39,6 +73,7 @@ const Home = () => {
   //   } 
   // }
   useEffect(()=>{
+    authenticate()
     getData()
     // getAvailable()
   },[]) // eslint-disable-line react-hooks/exhaustive-deps
