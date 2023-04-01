@@ -32,17 +32,24 @@ router.get("/profile",async(req,res)=>{
 
 router.post("/register",async(req,res)=>{
     try{
-        const { name, email, password, cpassword } = req.body;
-        if(!name || !email || !password || !cpassword){
+        const { name, email, password, cpassword, role, company } = req.body;
+        if(!name || !email || !password || !cpassword || !role || !company){
             res.status(400).json({"message":"Please fill your form"})
         }
         const userExist = await User.findOne({email:email});
+        let adminExist;
+        if(role==="admin"){
+            adminExist = await User.findOne({role:"admin",company:company})
+        }
+        // console.log(adminExist);
         if(userExist){
             res.status(401).json({"message":"Email already exists"})
         } else if(password!==cpassword){
             res.status(402).json({"message":"The password confirmation does not match"})
+        } else if(adminExist){
+                res.status(403).json({"message":"Admin already exists"})
         } else {
-            const newUser = new User({name,email,password,cpassword});
+            const newUser = new User({name,email,password,cpassword,role,company});
             newUser.password =await bcrypt.hash(newUser.password,12);
             newUser.cpassword =await bcrypt.hash(newUser.cpassword,12);
             await newUser.save();

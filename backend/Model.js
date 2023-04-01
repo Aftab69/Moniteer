@@ -18,6 +18,14 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    role: {
+        type: String,
+        required: true
+    },
+    company: {
+        type: String,
+        required: true
+    },
     tokens:[{
         token:{
             type: String,

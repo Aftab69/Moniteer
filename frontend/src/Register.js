@@ -8,21 +8,23 @@ const Register = () => {
     "name":"",
     "email":"",
     "password":"",
-    "cpassword":""
+    "cpassword":"",
+    "role":"",
+    "company":""
   })
   const handleChange = (e) =>{
     setData({...data,[e.target.name]:e.target.value});
   }
   const handleSubmit = (e) =>{
     e.preventDefault();
-    const { name, email, password, cpassword } = data;
+    const { name, email, password, cpassword, role, company } = data;
     fetch("/register",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
       },
       body:JSON.stringify({
-        name, email, password, cpassword
+        name, email, password, cpassword, role, company
       })
     }).then((res)=>{
       if(res.status===200){
@@ -34,9 +36,12 @@ const Register = () => {
         alert("Email already exists")
       } else if(res.status===402){
         alert("The password confirmation does not match")
+      } else if(res.status===403){
+        alert("Admin already exists")
       }
     })
   }
+  console.log(data)
   return (
     <>
       <div className='registerpageContainer'>
@@ -45,6 +50,19 @@ const Register = () => {
               <input type="text" name='name' onChange={handleChange} />
               <p>Email :</p>
               <input type="email" name='email' onChange={handleChange} />
+
+              <p>Role :</p>
+              <label style={{padding:5}}>
+              <input type="radio" name="role" value="admin" onChange={handleChange} />
+              Admin
+              </label>
+              <label style={{padding:5}}>
+              <input type="radio" name="role" value="member" onChange={handleChange} />
+              Member
+              </label>
+              <p>Company :</p>
+              <input type="text" name='company' onChange={handleChange} />
+
               <p>Password :</p>
               <input type="password" name='password' onChange={handleChange} />
               <p>Confirm Password :</p>
