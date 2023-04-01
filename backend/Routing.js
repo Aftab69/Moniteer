@@ -6,23 +6,23 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 router.use(cookieParser());
 
-router.get("/home",async(req,res)=>{
-    const data = await User.find();
-    res.send(data);
-})
-
 router.get("/authenticate",async(req,res)=>{
     try{
         const verifiedToken = jwt.verify(req.cookies.jwtoken,process.env.PRIVATEKEY);
-        const userData = await User.findOne({_id:verifiedToken._id,role:"admin"})
-        if(userData){
-            res.status(200).send(userData);
+        const data = await User.findOne({_id:verifiedToken._id,role:"admin"})
+        if(data){
+            res.status(200).send(data);
         } else {
             res.status(400).json({"message":"User unauthorised"})
         }
     } catch(error){
             res.status(400).json({"message":"User unauthorised"})
     }
+})
+
+router.get("/home",async(req,res)=>{
+    const data = await User.find();
+    res.status(201).send(data);
 })
 
 router.get("/available",async(req,res)=>{

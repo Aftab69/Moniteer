@@ -5,6 +5,7 @@ import "./Home.css";
 
 const Home = () => {
   const navigate = useNavigate();
+  // const [ profiledata, setProfiledata ] = useState([]);
   const [ fulldata, setFulldata ] = useState([]);
   // const [ availablemembers, setAvailablemembers ] = useState([]);
   const [ membertimearr, setMembertimearr ] = useState([]);
@@ -23,7 +24,7 @@ const Home = () => {
   //     console.log(data);
   //   })
   // } 
-
+  let profiledata = [];
   const authenticate = async() =>{
     try{
       const res = await fetch("/authenticate",{
@@ -33,32 +34,53 @@ const Home = () => {
                   }
                 })
       if(res.status===200){
-          const data = await res.json(); 
+          const data = await res.json();
+          // setProfiledata(data);
+          profiledata.push(data);
+          // console.log(data)
+          // console.log(profiledata)
       } else if(res.status===400){
           navigate("/")
       }
     } catch(error){
           console.log(error);
+          navigate("/");
     }
   }
 
   const getData = async() =>{
     try{
+      await authenticate();
       const res = await fetch("/home",{
                   method:"GET",
                   headers:{
                     "Content-Type":"application/json"
                   }
                 })
-      if(res.status===200){
+      if(res.status===201){
           const data = await res.json();
-          setFulldata(data);  
-          console.log(data);
+          // const newArr = data.filter((eachInd)=>(
+          //   eachInd.company===profiledata.company
+          // ))
+          // console.log(data);
+          let newArr = [];
+          for(let i=0; i<data.length; i++){
+            if(data[i].company===profiledata[0].company){
+              // console.log("yes")
+              newArr.push(data[i])
+            } else {
+              // console.log("no")
+            }
+          }
+          // console.log(newArr);
+          setFulldata(newArr);  
       }     
     } catch(error){
           console.log(error);
     }
   }
+
+  
   // const getAvailable = async()=>{
   //   const res = await fetch("/available",{
   //     method:"GET",
@@ -81,8 +103,8 @@ const Home = () => {
   //get member timeline
   const handleTimeline = (e) =>{
     e.preventDefault();
-    console.log(e.target.name)
-    console.log(fulldata.length)
+    // console.log(e.target.name)
+    // console.log(fulldata.length)
 
     let i=0; 
     while(i<fulldata.length){
@@ -124,8 +146,11 @@ const Home = () => {
     setActivitiesvisibility({visibility:"visible"})
   }
 
-  console.log(membertimearr)
-  console.log(activityarr)
+  // console.log(membertimearr)
+  // console.log(activityarr)
+
+  // console.log(profiledata);
+  // console.log(fulldata);
   return (
     <>
     <div className='homepageMaincontainer'>
