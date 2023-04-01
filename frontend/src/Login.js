@@ -25,7 +25,7 @@ const Login = () => {
     }).then((res)=>{
       if(res.status===200){
         alert("User successfully logged in")
-        navigate("/profile")
+        navigate("/")
       } else if(res.status===400){
         alert("Please fill your form")
       } else if(res.status===401){
