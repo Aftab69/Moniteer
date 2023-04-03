@@ -6,6 +6,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [ name, setName ] = useState("");
   const [ email, setEmail ] = useState("");
+  const [ company, setCompany ] = useState("");
   const [ timebundle, setTimebundle ] = useState([]);
   const [ visibility, setVisibility ] = useState({display:"none"});
   const [ togglebutton1, setTogglebutton1 ] = useState({background:"white"});
@@ -26,6 +27,7 @@ const Profile = () => {
             const data = await res.json();
             setName(data.name)
             setEmail(data.email)
+            setCompany(data.company)
             setTimebundle(data.timeinfo.reverse())
             if(data.onlinestatus==="on"){
               // document.getElementById("toggleContainer2").style.background = "green";
@@ -173,18 +175,52 @@ const Profile = () => {
     setActivityboxvisibility({visibility:"visible"})
   }
 
+  //handling Logout
+  const handleLogout = async(e) =>{
+    e.preventDefault();
+    try{
+      const res = await fetch("/logout",{
+        method:"GET",
+        headers:{
+          "Content-Type":"application/json"
+        }
+      })
+      if(res.status===200){
+        alert("User Successfully Logged Out !!")
+        navigate("/login")
+      } 
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   return (
     <>
     <div style={visibility} className='profileMainContainer'>
-      <div>
-        <h1>Welcome, {name}</h1>
-      </div>
-      <div className='toggleMainContainer'>
-        <div onClick={handleToggle1} className='toggleContainer1' id='toggleContainer1' style={togglebutton1}>
-          <p>I'm Offline</p>
+      <div className='introContainerMain'>
+        <div className='introContainer'>
+          <div>
+            <h1>Welcome, {name}</h1>
+          </div>
+          <div className='toggleMainContainer'>
+            <div onClick={handleToggle1} className='toggleContainer1' id='toggleContainer1' style={togglebutton1}>
+              <p>I'm Offline</p>
+            </div>
+            <div onClick={handleToggle2} className='toggleContainer2' id='toggleContainer2' style={togglebutton2}>
+              <p>I'm Online</p>
+            </div>
+          </div>
         </div>
-        <div onClick={handleToggle2} className='toggleContainer2' id='toggleContainer2' style={togglebutton2}>
-          <p>I'm Online</p>
+        <div className='profiledetailsContainer'>
+          <div>
+            <h3 style={{textDecoration:"underline"}}>Account Details</h3>
+          </div>
+          <div>
+            <p>Name : {name}</p>
+            <p>Email : {email}</p>
+            <p>Company : {company}</p>
+          </div>
+          <button onClick={handleLogout}>Log Out</button>
         </div>
       </div>
       <div className='timelineandactivityBox'>

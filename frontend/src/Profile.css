@@ -3,6 +3,15 @@
   padding: 50px;
   display: flex;
 }
+.introContainerMain{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.introContainer{
+  
+}
 .toggleMainContainer{
   display: flex;
   flex-direction: row;
@@ -31,6 +40,22 @@
   padding-right:10px;
 }
 .toggleContainer2:hover{
+  cursor: pointer;
+}
+.profiledetailsContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background: rgb(209, 209, 209);
+  padding: 15px;
+  border-radius: 15px ;
+
+}
+.profiledetailsContainer>button{
+  padding: 5px;
+}
+.profiledetailsContainer>button:hover{
   cursor: pointer;
 }
 
