@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 app.use(express.json());
 app.use(cors({
-    origin: 'https://moniteer.infinityymedia.com',
+    origin: ['https://moniteer.infinityymedia.com','http://localhost:3000'],
     credentials: true
   }));
 const dotenv = require("dotenv");
