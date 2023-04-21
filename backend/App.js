@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 app.use(express.json());
+app.use(cors({
+    origin: 'https://moniteer.infinityymedia.com',
+    credentials: true
+  }));
 const dotenv = require("dotenv");
 dotenv.config({ path:"./config.env" });
 require("./Connection");
