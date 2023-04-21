@@ -16,7 +16,7 @@ const Profile = () => {
 
   const getData = async() =>{
       try{
-        const res = await fetch("/profile",{
+        const res = await fetch("https://moniteer-backend.infinityymedia.com/profile",{
                     method:"GET",
                     headers:{
                       "Content-Type":"application/json"
@@ -74,7 +74,7 @@ const Profile = () => {
     var year = now2.getFullYear();
     var today = year + "-" + month + "-" + date;
     
-    fetch("/offline",{
+    fetch("https://moniteer-backend.infinityymedia.com/offline",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
@@ -122,7 +122,7 @@ const Profile = () => {
     var year = now2.getFullYear();
     var today = year + "-" + month + "-" + date;
 
-    fetch("/online",{
+    fetch("https://moniteer-backend.infinityymedia.com/online",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
@@ -179,7 +179,7 @@ const Profile = () => {
   const handleLogout = async(e) =>{
     e.preventDefault();
     try{
-      const res = await fetch("/logout",{
+      const res = await fetch("https://moniteer-backend.infinityymedia.com/logout",{
         method:"GET",
         headers:{
           "Content-Type":"application/json"

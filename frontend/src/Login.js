@@ -14,7 +14,7 @@ const Login = () => {
   const handleSubmit = (e) =>{
     e.preventDefault();
     const { email, password } = data;
-    fetch("/login",{
+    fetch("https://moniteer-backend.infinityymedia.com/login",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"

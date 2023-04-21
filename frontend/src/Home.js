@@ -14,7 +14,7 @@ const Home = () => {
   const [ activityarr, setActivityarr ] = useState([]);
 
   // const authenticate = () =>{
-  //   fetch("/authenticate",{
+  //   fetch("https://moniteer-backend.infinityymedia.com/authenticate",{
   //     method:"GET",
   //     headers:{
   //       "Content-Type":"application/json"
@@ -27,7 +27,7 @@ const Home = () => {
   let profiledata = [];
   const authenticate = async() =>{
     try{
-      const res = await fetch("/authenticate",{
+      const res = await fetch("https://moniteer-backend.infinityymedia.com/authenticate",{
                   method:"GET",
                   headers:{
                     "Content-Type":"application/json"
@@ -51,7 +51,7 @@ const Home = () => {
   const getData = async() =>{
     try{
       await authenticate();
-      const res = await fetch("/home",{
+      const res = await fetch("https://moniteer-backend.infinityymedia.com/home",{
                   method:"GET",
                   headers:{
                     "Content-Type":"application/json"
@@ -82,7 +82,7 @@ const Home = () => {
 
   
   // const getAvailable = async()=>{
-  //   const res = await fetch("/available",{
+  //   const res = await fetch("https://moniteer-backend.infinityymedia.com/available",{
   //     method:"GET",
   //     headers:{
   //       "Content-Type":"application/json"

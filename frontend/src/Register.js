@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = (e) =>{
     e.preventDefault();
     const { name, email, password, cpassword, role, company } = data;
-    fetch("/register",{
+    fetch("https://moniteer-backend.infinityymedia.com/register",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
