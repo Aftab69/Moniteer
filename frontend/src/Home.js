@@ -31,7 +31,8 @@ const Home = () => {
                   method:"GET",
                   headers:{
                     "Content-Type":"application/json"
-                  }
+                  },
+                  credentials:"include"
                 })
       if(res.status===200){
           const data = await res.json();
