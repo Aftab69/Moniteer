@@ -34,11 +34,14 @@ const Login = () => {
     })
       .then((res) => {
         if (res.status === 200) {
-          // If the user is successfully logged in, store the authentication token in a secure way
-          const authToken = res.headers.get('Authorization');
-          document.cookie = `authToken=${authToken}; Path=/; SameSite=Strict`;
-          alert('User successfully logged in');
-          navigate('/');
+          res.headers.forEach((value, name) => {
+            if(name === 'set-cookie') {
+              const jwtToken = value.split(';')[0].split('=')[1];
+              localStorage.setItem('jwtToken', jwtToken);
+            }
+          });
+          alert("User successfully logged in");
+          navigate("/")
         } else if (res.status === 400) {
           alert('Please fill in your form');
         } else if (res.status === 401) {
