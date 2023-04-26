@@ -30,14 +30,15 @@ const Login = () => {
       body: JSON.stringify({
         email,
         password
-      })
+      }),
+      credentials:'include',
     })
       .then((res) => {
         if (res.status === 200) {
 
-          const jwtToken = res.headers.get("set-cookie");
-          document.cookie = `jwt=${jwtToken}; path=/; expires=${new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toUTCString()};`;
-          alert("User successfullxy logged in")
+          //document.cookie = res.headers.get("set-cookie");
+          
+          alert("User successfully logged in")
           navigate("/")
 
         } else if (res.status === 400) {
