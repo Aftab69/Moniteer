@@ -183,7 +183,8 @@ const Profile = () => {
         method:"GET",
         headers:{
           "Content-Type":"application/json"
-        }
+        },
+        credentials:"include"
       })
       if(res.status===200){
         alert("User Successfully Logged Out !!")
