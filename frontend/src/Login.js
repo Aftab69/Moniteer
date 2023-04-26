@@ -35,35 +35,34 @@ const Login = () => {
       .then((res) => {
         if (res.status === 200) {
           res.headers.forEach((value, name) => {
-            if(name === 'set-cookie') {
+            if (name === 'set-cookie') {
               const jwtToken = value.split(';')[0].split('=')[1];
-              localStorage.setItem('jwtToken', jwtToken);
+              document.cookie = `jwt=${jwtToken}; path=/; expires=${new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toUTCString()};`;
+              alert("User successfully logged in")
+              navigate("/")
+              
+            } else if (res.status === 400) {
+              alert('Please fill in your form');
+            } else if (res.status === 401) {
+              alert('Invalid credentials');
             }
-          });
-          alert("User successfully logged in");
-          navigate("/")
-        } else if (res.status === 400) {
-          alert('Please fill in your form');
-        } else if (res.status === 401) {
-          alert('Invalid credentials');
-        }
-      })
-      .catch((error) => {
-        alert(`Error: ${error.message}`);
-      });
-  };
+          })
+            .catch((error) => {
+              alert(`Error: ${error.message}`);
+            });
+        };
 
-  return (
-    <div className="loginpageContainer">
-      <form method="POST" onSubmit={handleSubmit} className="logininfoContainer">
-        <p>Email:</p>
-        <input type="email" name="email" onChange={handleChange} />
-        <p>Password:</p>
-        <input type="password" name="password" onChange={handleChange} />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
-};
+        return (
+          <div className="loginpageContainer">
+            <form method="POST" onSubmit={handleSubmit} className="logininfoContainer">
+              <p>Email:</p>
+              <input type="email" name="email" onChange={handleChange} />
+              <p>Password:</p>
+              <input type="password" name="password" onChange={handleChange} />
+              <button type="submit">Login</button>
+            </form>
+          </div>
+        );
+      };
 
-export default Login;
+    export default Login;
