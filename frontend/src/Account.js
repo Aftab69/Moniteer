@@ -37,8 +37,12 @@ useEffect(()=>{
 
   return (
   <>
-    <div>Personal Details:</div>
-    <p>{userdata.name}</p>
+    <div className='accountpagedetailsContainer'>
+    <p>Personal details: </p>
+    <p>Name : {userdata.name}</p>
+    <p>Email : {userdata.email}</p>
+    <p>Company : {userdata.company}</p>
+    </div>
   </>
   )
 }

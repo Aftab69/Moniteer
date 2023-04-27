@@ -194,7 +194,7 @@ const Home = () => {
         <h3>Timeline:</h3>
         <div className='headingBoxhome'>
           <p style={{textDecoration:"underline"}}>Date</p>
-          <p style={{textDecoration:"underline"}}>Time</p>
+          <p style={{textDecoration:"underline"}}>Total Time</p>
         </div>
         <div className='timelinemapboxHome'>
         {membertimearr.map((eachDay)=>(

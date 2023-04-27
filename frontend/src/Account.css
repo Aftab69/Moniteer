@@ -1,0 +1,15 @@
+.accountpagedetailsContainer{
+    background: rgb(209, 209, 209);
+    font-family: 'Josefin Sans', sans-serif;
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.accountpagedetailsContainer>p:first-child{
+    font-size: 25px;
+    font-weight: 600;   
+}
+.accountpagedetailsContainer>p{
+    font-size: 18px;   
+}
