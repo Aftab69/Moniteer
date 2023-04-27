@@ -42,7 +42,7 @@
 .toggleContainer2:hover{
   cursor: pointer;
 }
-.profiledetailsContainer{
+/* .profiledetailsContainer{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,7 +57,7 @@
 }
 .profiledetailsContainer>button:hover{
   cursor: pointer;
-}
+} */
 
 .timelineandactivityBox{
   display: flex;

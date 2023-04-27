@@ -175,25 +175,25 @@ const Profile = () => {
     setActivityboxvisibility({visibility:"visible"})
   }
 
-  //handling Logout
-  const handleLogout = async(e) =>{
-    e.preventDefault();
-    try{
-      const res = await fetch("https://moniteer-backend.infinityymedia.com/logout",{
-        method:"GET",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        credentials:"include"
-      })
-      if(res.status===200){
-        alert("User Successfully Logged Out !!")
-        navigate("/login")
-      } 
-    }catch(error){
-      console.log(error)
-    }
-  }
+  // //handling Logout
+  // const handleLogout = async(e) =>{
+  //   e.preventDefault();
+  //   try{
+  //     const res = await fetch("https://moniteer-backend.infinityymedia.com/logout",{
+  //       method:"GET",
+  //       headers:{
+  //         "Content-Type":"application/json"
+  //       },
+  //       credentials:"include"
+  //     })
+  //     if(res.status===200){
+  //       alert("User Successfully Logged Out !!")
+  //       navigate("/login")
+  //     } 
+  //   }catch(error){
+  //     console.log(error)
+  //   }
+  // }
 
   return (
     <>
@@ -212,7 +212,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className='profiledetailsContainer'>
+        {/* <div className='profiledetailsContainer'>
           <div>
             <h3 style={{textDecoration:"underline"}}>Account Details</h3>
           </div>
@@ -222,7 +222,7 @@ const Profile = () => {
             <p>Company : {company}</p>
           </div>
           <button onClick={handleLogout}>Log Out</button>
-        </div>
+        </div> */}
       </div>
       <div className='timelineandactivityBox'>
         <div className='timelineBox'>
