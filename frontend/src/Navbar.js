@@ -52,6 +52,7 @@ useEffect(()=>{
       if(res.status===200){
         alert("User Successfully Logged Out !!")
         navigate("/login")
+        window.location.reload();
       } 
     }catch(error){
       console.log(error)

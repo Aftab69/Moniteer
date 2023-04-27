@@ -40,6 +40,7 @@ const Login = () => {
           
           alert("User successfully logged in")
           navigate("/")
+          window.location.reload();
 
         } else if (res.status === 400) {
           alert('Please fill in your form');
