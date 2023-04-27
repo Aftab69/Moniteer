@@ -16,6 +16,16 @@ span:hover{
     color: white;
     border-bottom: 2px solid white;
 }
+nav>button{
+    border: none;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: black;
+    color: rgb(202, 202, 202);
+}
+nav>button:hover{
+    color: white;
+    border-bottom: 2px solid white;
+}
 
 @media only screen and (max-width: 300px){
     nav{
