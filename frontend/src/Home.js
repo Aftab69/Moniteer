@@ -9,6 +9,7 @@ const Home = () => {
   const [ fulldata, setFulldata ] = useState([]);
   // const [ availablemembers, setAvailablemembers ] = useState([]);
   const [ membertimearr, setMembertimearr ] = useState([]);
+  const [ pagevisibility, setPagevisibility ] = useState({visibility:"hidden"});
   const [ timelinevisibility, setTimelinevisibility ] = useState({visibility:"hidden"});
   const [ activitiesvisibility, setActivitiesvisibility ] = useState({visibility:"hidden"});
   const [ activityarr, setActivityarr ] = useState([]);
@@ -38,6 +39,7 @@ const Home = () => {
           const data = await res.json();
           // setProfiledata(data);
           profiledata.push(data);
+          setPagevisibility({visibility:"visible"})
           // console.log(data)
           // console.log(profiledata)
       } else if(res.status===400){
@@ -155,7 +157,7 @@ const Home = () => {
   // console.log(fulldata);
   return (
     <>
-    <div className='homepageMaincontainer'>
+    <div style={pagevisibility} className='homepageMaincontainer'>
       <div className='membersMaincontainer'>
         <h3>All Members :</h3>
         <div className='membersmapboxHome'>
