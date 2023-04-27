@@ -6,6 +6,7 @@ const Account = () => {
 
     const navigate = useNavigate();
     const [ userdata, setUserdata ] = useState([]);
+    const [ pagevisibility, setPagevisibility ] = useState({visibility:"hidden"});
 
 const authenticateforaccount = async() =>{
     try{
@@ -20,6 +21,7 @@ const authenticateforaccount = async() =>{
           const data = await res.json();
           // setProfiledata(data);
           setUserdata(data);
+          setPagevisibility({visibility:"visible"})
           console.log(userdata)
           // console.log(profiledata)
       } else if(res.status===400){
@@ -37,7 +39,7 @@ useEffect(()=>{
 
   return (
   <>
-    <div className='accountpagedetailsContainer'>
+    <div className='accountpagedetailsContainer' style={pagevisibility}>
     <p>Personal details: </p>
     <p>Name : {userdata.name}</p>
     <p>Email : {userdata.email}</p>
