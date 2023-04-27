@@ -6,6 +6,20 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 router.use(cookieParser());
 
+router.get("/authenticateforaccount",async(req,res)=>{
+    try{
+        const verifiedToken = jwt.verify(req.cookies.jwtoken,process.env.PRIVATEKEY);
+        const data = await User.findOne({_id:verifiedToken._id})
+        if(data){
+            res.status(200).send(data);
+        } else {
+            res.status(400).json({"message":"User unauthorised"})
+        }
+    } catch(error){
+            res.status(400).json({"message":"User unauthorised"})
+    }
+})
+
 router.get("/authenticate",async(req,res)=>{
     try{
         const verifiedToken = jwt.verify(req.cookies.jwtoken,process.env.PRIVATEKEY);
