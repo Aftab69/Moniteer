@@ -6,6 +6,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [ name, setName ] = useState("");
   const [ email, setEmail ] = useState("");
+  // eslint-disable-next-line
   const [ company, setCompany ] = useState("");
   const [ timebundle, setTimebundle ] = useState([]);
   const [ visibility, setVisibility ] = useState({display:"none"});
