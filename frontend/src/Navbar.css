@@ -17,6 +17,7 @@ span:hover{
     border-bottom: 2px solid white;
 }
 nav>button{
+    font-size: 18px;
     border: none;
     font-family: 'Josefin Sans', sans-serif;
     background-color: black;
@@ -25,6 +26,7 @@ nav>button{
 nav>button:hover{
     color: white;
     border-bottom: 2px solid white;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 300px){
