@@ -193,7 +193,6 @@ const Home = () => {
   }
 
   const handlerole = async(e) =>{
-    e.preventDefault();
     const membernm = e.target.name;
     setMemberdata({...memberdata,
       company:companyname,
