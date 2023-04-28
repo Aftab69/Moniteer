@@ -16,7 +16,7 @@ const Home = () => {
 
   const [ companyname, setCompanyname ] = useState("");
   const [ membername, setMembername ] = useState("");
-  const [memberdata, setMemberdata] = useState();
+  // const [memberdata, setMemberdata] = useState();
 
   // const authenticate = () =>{
   //   fetch("https://moniteer-backend.infinityymedia.com/authenticate",{
@@ -165,10 +165,14 @@ const Home = () => {
   const handlerole = (e) =>{
     e.preventDefault();
     const membernm = e.target.name;
-    setMemberdata({
-      company: companyname,
+    // setMemberdata({
+    //   company: companyname,
+    //   name: membernm
+    // })
+    const memberdata = {
+      company:companyname,
       name: membernm
-    })
+    }
 
     const { company, name } = memberdata;
     fetch('https://moniteer-backend.infinityymedia.com/rolechange', {
