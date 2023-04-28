@@ -199,6 +199,7 @@ const Home = () => {
       company:companyname,
       name: membernm
     })
+    console.log(memberdata)
     // handlefetch()
   }
 
