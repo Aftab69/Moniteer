@@ -195,11 +195,12 @@ const Home = () => {
   const handlerole = (e) =>{
     e.preventDefault();
     const membernm = e.target.name;
-    setMemberdata({
-      company:companyname,
-      name: membernm
-    })
-    console.log(memberdata)
+    // setMemberdata({
+    //   company:companyname,
+    //   name: membernm
+    // })
+    const memberdt = {company:companyname, name: membernm}
+    console.log(memberdt)
     // handlefetch()
   }
 
