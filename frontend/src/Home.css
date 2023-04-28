@@ -72,6 +72,9 @@
 .membernameBox>button{
     margin-left: 5px;
 }
+.membernameBox>button:hover{
+    cursor: pointer;
+}
 .memberName{
     max-width: 130px;
 }
