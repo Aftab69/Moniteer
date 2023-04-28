@@ -16,10 +16,10 @@ const Home = () => {
 
   const [ companyname, setCompanyname ] = useState("");
   const [ membername, setMembername ] = useState("");
-  const [ memberdata, setMemberdata ] = useState({
-      company:"",
-      name: ""
-  });
+  // const [ memberdata, setMemberdata ] = useState({
+  //     company:"",
+  //     name: ""
+  // });
 
   // const authenticate = () =>{
   //   fetch("https://moniteer-backend.infinityymedia.com/authenticate",{
@@ -166,18 +166,17 @@ const Home = () => {
 
   //handing sub admin roles
 
-  const handlerole = (e) =>{
-    e.preventDefault();
-    const membernm = e.target.name;
-    // setMemberdata({
-    //   company:companyname,
-    //   name: membernm
-    // })
-    const memberdt = { company:companyname, name: membernm }
-    console.log(memberdt)
+  const handlerole = async(e) =>{
+
+    try{  
+      e.preventDefault();
+      const membernm = e.target.name;
+      const memberdt = { company:companyname, name: membernm }
+      console.log(memberdt)
     
     const { company, name } = memberdt;
-    fetch('https://moniteer-backend.infinityymedia.com/rolechange', {
+
+    const res = await fetch('https://moniteer-backend.infinityymedia.com/rolechange', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -188,16 +187,16 @@ const Home = () => {
       }),
       credentials:'include',
     })
-      .then((res) => {
-        if (res.status === 200) {
-          window.location.reload();
-        } else if (res.status === 400) {
-          alert('error changing role');
-        } 
-      })
-      .catch((error) => {
-        alert(`Error: ${error.message}`);
-      });
+
+    if (res.status === 200) {
+      window.location.reload();
+    } else if (res.status === 400) {
+      alert('error changing role');
+    } 
+    
+    }catch(error){
+      console.log(error)
+    }
   }
 
   return (
