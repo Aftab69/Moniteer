@@ -195,7 +195,7 @@ const Home = () => {
   const handlerole = (e) =>{
     e.preventDefault();
     const membernm = e.target.name;
-    setMemberdata({...memberdata,
+    setMemberdata({
       company:companyname,
       name: membernm
     })
