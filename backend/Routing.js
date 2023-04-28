@@ -211,21 +211,21 @@ router.get("/logout",(req,res)=>{
 router.post("/rolechange",async(req,res)=>{
     try{
         res.send("hi");
-        // const { company, name } = req.body;
-        // const userData = await User.findOne({company:company,name:name})
-        // if(userData){
-        //     if(userData.role==="member"){
-        //         userData.role="subadmin";
-        //         userData.save();
-        //         res.status(200).json({"message":"role changed to sub admin"})
-        //     } else if(userData.role==="subadmin"){
-        //         userData.role="member";
-        //         userData.save();
-        //         res.status(200).json({"message":"role changed to member"})
-        //     }
-        // } else {
-        //     res.status(400).json({"message":"no user found"})
-        // }
+        const { company, name } = req.body;
+        const userData = await User.findOne({company:company,name:name})
+        if(userData){
+            if(userData.role==="member"){
+                userData.role="subadmin";
+                userData.save();
+                res.status(200).json({"message":"role changed to sub admin"})
+            } else if(userData.role==="subadmin"){
+                userData.role="member";
+                userData.save();
+                res.status(200).json({"message":"role changed to member"})
+            }
+        } else {
+            res.status(400).json({"message":"no user found"})
+        }
 
     }catch(error){
         console.log(error)
