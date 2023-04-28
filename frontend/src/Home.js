@@ -16,10 +16,7 @@ const Home = () => {
 
   const [ companyname, setCompanyname ] = useState("");
   const [ membername, setMembername ] = useState("");
-  const [memberdata, setMemberdata] = useState({
-    company: '',
-    name: ''
-  });
+  const [memberdata, setMemberdata] = useState();
 
   // const authenticate = () =>{
   //   fetch("https://moniteer-backend.infinityymedia.com/authenticate",{
