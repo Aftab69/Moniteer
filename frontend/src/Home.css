@@ -65,7 +65,8 @@
 .membernameBox{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: start;
     align-items: center;
     max-width: 200px;
 }
@@ -77,6 +78,7 @@
 }
 .memberName{
     max-width: 130px;
+    padding: 10px 0;
 }
 .statusboxCircle{
     margin-left: 10px;
