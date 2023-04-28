@@ -199,7 +199,7 @@ const Home = () => {
       company:companyname,
       name: membernm
     })
-    handlefetch()
+    // handlefetch()
   }
 
   return (
