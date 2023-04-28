@@ -14,6 +14,13 @@ const Home = () => {
   const [ activitiesvisibility, setActivitiesvisibility ] = useState({visibility:"hidden"});
   const [ activityarr, setActivityarr ] = useState([]);
 
+  const [ companyname, setCompanyname ] = useState("");
+  const [ membername, setMembername ] = useState("");
+  const [memberdata, setMemberdata] = useState({
+    company: '',
+    name: ''
+  });
+
   // const authenticate = () =>{
   //   fetch("https://moniteer-backend.infinityymedia.com/authenticate",{
   //     method:"GET",
@@ -39,6 +46,7 @@ const Home = () => {
           const data = await res.json();
           // setProfiledata(data);
           profiledata.push(data);
+          setCompanyname(data.company);
           setPagevisibility({visibility:"visible"})
           // console.log(data)
           // console.log(profiledata)
@@ -155,6 +163,40 @@ const Home = () => {
 
   // console.log(profiledata);
   // console.log(fulldata);
+
+  //handing sub admin roles
+  const handlerole = (e) =>{
+    e.preventDefault();
+    const membernm = e.target.name;
+    setMemberdata({
+      company: companyname,
+      name: membernm
+    })
+
+    const { company, name } = memberdata;
+    fetch('https://moniteer-backend.infinityymedia.com/rolechange', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        company,
+        name
+      }),
+      credentials:'include',
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          window.location.reload();
+        } else if (res.status === 400) {
+          alert('error changing role');
+        } 
+      })
+      .catch((error) => {
+        alert(`Error: ${error.message}`);
+      });
+  }
+
   return (
     <>
     <div style={pagevisibility} className='homepageMaincontainer'>
@@ -176,6 +218,7 @@ const Home = () => {
                   <div className='statusText'>offline</div>
                   </>         
                 }
+                <button name={eachIndividual.name} onClick={handlerole}>{eachIndividual.role}</button>
              </div>
               <button onClick={handleTimeline} name={eachIndividual.email}>&rarr;</button>
             </div>

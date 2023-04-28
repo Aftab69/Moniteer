@@ -23,7 +23,7 @@ router.get("/authenticateforaccount",async(req,res)=>{
 router.get("/authenticate",async(req,res)=>{
     try{
         const verifiedToken = jwt.verify(req.cookies.jwtoken,process.env.PRIVATEKEY);
-        const data = await User.findOne({_id:verifiedToken._id,role:"admin"})
+        const data = await User.findOne({ _id: verifiedToken._id, role: { $in: ["admin", "subadmin"] } });
         if(data){
             res.status(200).send(data);
         } else {
@@ -206,6 +206,30 @@ router.post("/online", async(req,res)=>{
 router.get("/logout",(req,res)=>{
     res.clearCookie("jwtoken", {path:"/"})
     res.status(200).send({"message":"User Logged Out"});
+})
+
+router.post("/rolechange",async(req,res)=>{
+    try{
+        const { company, name } = req.body;
+        const userData = await User.findOne({company:company,name:name})
+        if(userData){
+            if(userData.role==="member"){
+                userData.role="subadmin";
+                userData.save();
+                res.status(200).json({"message":"role changed to sub admin"})
+            } else if(userData.role==="subadmin"){
+                userData.role="member";
+                userData.save();
+                res.status(200).json({"message":"role changed to member"})
+            }
+        } else {
+            res.status(400).json({"message":"no user found"})
+        }
+
+    }catch(error){
+        console.log(error)
+        res.status(400).json({"message":"error"})
+    }
 })
 
 module.exports = router;
