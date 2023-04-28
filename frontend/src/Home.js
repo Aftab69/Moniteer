@@ -166,9 +166,17 @@ const Home = () => {
 
   //handing sub admin roles
 
-  const handlefetch = async() =>{
-    await handlerole();
-    const { company, name } = memberdata;
+  const handlerole = (e) =>{
+    e.preventDefault();
+    const membernm = e.target.name;
+    // setMemberdata({
+    //   company:companyname,
+    //   name: membernm
+    // })
+    const memberdt = { company:companyname, name: membernm }
+    console.log(memberdt)
+    
+    const { company, name } = memberdt;
     fetch('https://moniteer-backend.infinityymedia.com/rolechange', {
       method: 'POST',
       headers: {
@@ -190,18 +198,6 @@ const Home = () => {
       .catch((error) => {
         alert(`Error: ${error.message}`);
       });
-  }
-
-  const handlerole = (e) =>{
-    e.preventDefault();
-    const membernm = e.target.name;
-    // setMemberdata({
-    //   company:companyname,
-    //   name: membernm
-    // })
-    const memberdt = {company:companyname, name: membernm}
-    console.log(memberdt)
-    // handlefetch()
   }
 
   return (
