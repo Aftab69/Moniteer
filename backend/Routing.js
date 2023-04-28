@@ -210,6 +210,7 @@ router.get("/logout",(req,res)=>{
 
 router.post("/rolechange",async(req,res)=>{
     try{
+        res.send(req.body);
         const { company, name } = req.body;
         const userData = await User.findOne({company:company,name:name})
         if(userData){
