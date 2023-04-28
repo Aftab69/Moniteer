@@ -220,7 +220,7 @@ const Home = () => {
                   <div className='statusText'>offline</div>
                   </>         
                 }
-                <button style={{marginLeft:"2px"}} name={eachIndividual.name} onClick={handlerole}>{eachIndividual.role}</button>
+                <button name={eachIndividual.name} onClick={handlerole}>{eachIndividual.role}</button>
              </div>
               <button onClick={handleTimeline} name={eachIndividual.email}>&rarr;</button>
             </div>
