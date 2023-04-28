@@ -192,7 +192,7 @@ const Home = () => {
       });
   }
 
-  const handlerole = async(e) =>{
+  const handlerole = (e) =>{
     const membernm = e.target.name;
     setMemberdata({...memberdata,
       company:companyname,
