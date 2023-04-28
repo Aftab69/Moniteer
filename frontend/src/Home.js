@@ -193,7 +193,7 @@ const Home = () => {
     } else if (res.status === 400) {
       alert('error changing role');
     } 
-    
+
     }catch(error){
       console.log(error)
     }
@@ -220,7 +220,7 @@ const Home = () => {
                   <div className='statusText'>offline</div>
                   </>         
                 }
-                <button name={eachIndividual.name} onClick={handlerole}>{eachIndividual.role}</button>
+                <button style={{marginLeft:"2px"}} name={eachIndividual.name} onClick={handlerole}>{eachIndividual.role}</button>
              </div>
               <button onClick={handleTimeline} name={eachIndividual.email}>&rarr;</button>
             </div>
