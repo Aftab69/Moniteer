@@ -177,6 +177,8 @@ const Home = () => {
     console.log(memberdt)
     
     const { company, name } = memberdt;
+    console.log(memberdt.company);
+    console.log(memberdt.name);
     fetch('https://moniteer-backend.infinityymedia.com/rolechange', {
       method: 'POST',
       headers: {
